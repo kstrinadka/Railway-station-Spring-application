@@ -11,7 +11,6 @@ import java.util.List;
 @RequestMapping("/tickets")
 public class TicketController {
 
-
     @Autowired
     TicketService ticketService;
 
@@ -37,7 +36,6 @@ public class TicketController {
     /**
      * - нет кнопки
      * - не проверено
-     *
      * -- Получить перечень пpоданных билетов за указанный интервал времени на опpеделенные маpшpуты
      */
     @GetMapping(path = "/onroute/inperiod")
@@ -92,7 +90,7 @@ public class TicketController {
      * Получить перечень невыкупленных билетов в определенный день
      *
      */
-    @GetMapping(path = "/notsold/day/{id}")
+    @GetMapping(path = "/notsold/day/{day}")
     public List<TicketDto> getAllNotSoldTicketsByDay(@PathVariable Timestamp day) {
         return ticketService.getAllNotSoldTicketsByDay(day);
     }
@@ -128,7 +126,7 @@ public class TicketController {
      * - не проверено
      * -- Получить общее число сданных билетов на указанный день
      */
-    @GetMapping(path = "/refund/day/{id}")
+    @GetMapping(path = "/refund/day/{day}")
     public List<TicketDto> getAllRefundTicketsByDay(@PathVariable Timestamp day) {
         return ticketService.getAllRefundTicketsByDay(day);
     }
