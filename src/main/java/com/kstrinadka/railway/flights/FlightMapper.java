@@ -1,7 +1,6 @@
 package com.kstrinadka.railway.flights;
 
 
-
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
@@ -11,7 +10,6 @@ import java.util.List;
 @Mapper(componentModel = "spring",
         unmappedSourcePolicy = ReportingPolicy.ERROR, unmappedTargetPolicy = ReportingPolicy.ERROR)
 public interface FlightMapper {
-
 
     // сущность -> DTO
     @Mapping(target = "trainnumber", source = "train.trainnumber")

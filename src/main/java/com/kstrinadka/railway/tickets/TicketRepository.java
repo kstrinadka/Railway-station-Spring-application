@@ -13,17 +13,19 @@ public interface TicketRepository  extends JpaRepository<Ticket, Long> {
 
 
 
-    @Query(value = "SELECT r.cost\n" +
-            "FROM timetable tb, routes r\n" +
-            "WHERE tb.routenumber = r.routenumber\n" +
-            "        AND tb.flightnumber  = :flightNumber", nativeQuery = true)
+    @Query(value = """
+            SELECT r.cost
+            FROM timetable tb, routes r
+            WHERE tb.routenumber = r.routenumber
+                    AND tb.flightnumber  = :flightNumber""", nativeQuery = true)
     Long getTicketCostForFlightNumber(Long flightNumber);
 
 
 
-    @Query(value = "SELECT tk.flightnumber\n" +
-            "FROM tickets tk\n" +
-            "WHERE tk.ticketid = :ticketId", nativeQuery = true)
+    @Query(value = """
+            SELECT tk.flightnumber
+            FROM tickets tk
+            WHERE tk.ticketid = :ticketId""", nativeQuery = true)
     Long getFlightNumberByTicketId(Long ticketId);
 
 
@@ -32,13 +34,14 @@ public interface TicketRepository  extends JpaRepository<Ticket, Long> {
     /**
      * -- Получить перечень пpоданных билетов за указанный интервал времени на опpеделенные маpшpуты
      */
-    @Query(value = "SELECT ts.*\n" +
-            "FROM Tickets ts, Timetable tb\n" +
-            "WHERE ts.FlightNumber = tb.FlightNumber\n" +
-            "  AND ts.TimePurchase >= :start_time \n" +
-            "  AND ts.TimePurchase <= :end_time \n" +
-            "  AND (tb.RouteNumber = :route_id )\n" +
-            "ORDER BY tb.Arrival - tb.Departure ;", nativeQuery = true)
+    @Query(value = """
+            SELECT ts.*
+            FROM Tickets ts, Timetable tb
+            WHERE ts.FlightNumber = tb.FlightNumber
+              AND ts.TimePurchase >= :start_time\s
+              AND ts.TimePurchase <= :end_time\s
+              AND (tb.RouteNumber = :route_id )
+            ORDER BY tb.Arrival - tb.Departure ;""", nativeQuery = true)
     List<Ticket> getAllTicketsOnRouteInPeriod(@Param("start_time") Timestamp start_time,
                                               @Param("end_time") Timestamp end_time,
                                               @Param("route_id") Long route_id);
@@ -48,10 +51,11 @@ public interface TicketRepository  extends JpaRepository<Ticket, Long> {
     /**
      * -- Получить перечень пpоданных билетов по длительности маршрута
      */
-    @Query(value = "SELECT tk.*\n" +
-            "FROM Tickets tk, Timetable tb\n" +
-            "WHERE tk.FlightNumber = tb.FlightNumber\n" +
-            "ORDER BY (tb.Arrival - tb.Departure);", nativeQuery = true)
+    @Query(value = """
+            SELECT tk.*
+            FROM Tickets tk, Timetable tb
+            WHERE tk.FlightNumber = tb.FlightNumber
+            ORDER BY (tb.Arrival - tb.Departure);""", nativeQuery = true)
     List<Ticket> getAllTicketsByRouteDuration();
 
     /**
@@ -63,23 +67,25 @@ public interface TicketRepository  extends JpaRepository<Ticket, Long> {
     /**
      * -- Получить перечень невыкупленных билетов на указанном pейсe
      */
-    @Query(value = "SELECT tk.*\n" +
-            "FROM tickets tk\n" +
-            "WHERE tk.passengerpassport IS NULL\n" +
-            "    AND tk.flightnumber = :flight_id \n" +
-            "GROUP BY tk.ticketid;", nativeQuery = true)
+    @Query(value = """
+            SELECT tk.*
+            FROM tickets tk
+            WHERE tk.passengerpassport IS NULL
+                AND tk.flightnumber = :flight_id\s
+            GROUP BY tk.ticketid;""", nativeQuery = true)
     List<Ticket> getAllNotSoldTicketsByFlight(@Param("flight_id") Long flight_id);
 
 
     /**
      * -- Получить перечень невыкупленных билетов в определенный день
      */
-    @Query(value = "SELECT tk.* \n" +
-            "FROM Tickets tk, Timetable tb \n" +
-            "WHERE tk.PassengerPassport IS NULL\n" +
-            "        AND tb.FlightNumber = tk.FlightNumber\n" +
-            "        AND tb.Departure >= :start_day \n" +
-            "        AND tb.Departure <= :end_day ;", nativeQuery = true)
+    @Query(value = """
+            SELECT tk.*\s
+            FROM Tickets tk, Timetable tb\s
+            WHERE tk.PassengerPassport IS NULL
+                    AND tb.FlightNumber = tk.FlightNumber
+                    AND tb.Departure >= :start_day\s
+                    AND tb.Departure <= :end_day ;""", nativeQuery = true)
     List<Ticket> getAllNotSoldTicketsByDay(@Param("start_day") Timestamp start_day,
                                               @Param("end_day") Timestamp end_day);
 
@@ -87,41 +93,45 @@ public interface TicketRepository  extends JpaRepository<Ticket, Long> {
     /**
      * -- Получить перечень невыкупленных билетов на некотором маpшpуте
      */
-    @Query(value = "SELECT tk.*  \n" +
-            "FROM Tickets tk, Timetable tb \n" +
-            "WHERE tk.PassengerPassport IS NULL\n" +
-            "        AND tb.FlightNumber = tk.FlightNumber\n" +
-            "        AND tb.RouteNumber = :route_id ;", nativeQuery = true)
+    @Query(value = """
+            SELECT tk.* \s
+            FROM Tickets tk, Timetable tb\s
+            WHERE tk.PassengerPassport IS NULL
+                    AND tb.FlightNumber = tk.FlightNumber
+                    AND tb.RouteNumber = :route_id ;""", nativeQuery = true)
     List<Ticket> getAllNotSoldTicketsByRoute(@Param("route_id") Long route_id);
 
 
     /**
      * -- Получить общее число сданных билетов на указанный pейс
      */
-    @Query(value = "SELECT tk.* \n" +
-            "FROM Tickets tk\n" +
-            "WHERE tk.ReturnTicket = TRUE AND\n" +
-            "        tk.FlightNumber = :flight_id ;", nativeQuery = true)
+    @Query(value = """
+            SELECT tk.*\s
+            FROM Tickets tk
+            WHERE tk.ReturnTicket = TRUE AND
+                    tk.FlightNumber = :flight_id ;""", nativeQuery = true)
     List<Ticket> getAllRefundTicketsByFlight(@Param("flight_id") Long flight_id);
 
     /**
      * -- Получить общее число сданных билетов на указанный день
      */
-    @Query(value = "SELECT tk.*\n" +
-            "FROM Tickets tk\n" +
-            "WHERE tk.ReturnTicket = TRUE AND\n" +
-            "        tk.ReturnDate >= :start_day AND\n" +
-            "        tk.ReturnDate <= :end_day ;", nativeQuery = true)
+    @Query(value = """
+            SELECT tk.*
+            FROM Tickets tk
+            WHERE tk.ReturnTicket = TRUE AND
+                    tk.ReturnDate >= :start_day AND
+                    tk.ReturnDate <= :end_day ;""", nativeQuery = true)
     List<Ticket> getAllRefundTicketsByDay(@Param("start_day") Timestamp start_day,
                                            @Param("end_day") Timestamp end_day);
 
     /**
      * -- Получить перечень сданных билетов на указанный маpшpут
      */
-    @Query(value = "SELECT tk.*\n" +
-            "FROM Tickets tk, Timetable tb \n" +
-            "WHERE tk.ReturnTicket = TRUE AND\n" +
-            "        tb.FlightNumber = tk.FlightNumber AND\n" +
-            "        tb.RouteNumber = :route_id ;", nativeQuery = true)
+    @Query(value = """
+            SELECT tk.*
+            FROM Tickets tk, Timetable tb\s
+            WHERE tk.ReturnTicket = TRUE AND
+                    tb.FlightNumber = tk.FlightNumber AND
+                    tb.RouteNumber = :route_id ;""", nativeQuery = true)
     List<Ticket> getAllRefundTicketsByRoute(@Param("route_id") Long route_id);
 }

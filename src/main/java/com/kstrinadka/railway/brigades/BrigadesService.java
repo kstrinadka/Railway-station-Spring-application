@@ -1,7 +1,6 @@
 package com.kstrinadka.railway.brigades;
 
-
-import com.kstrinadka.railway.worker.model.Worker;
+import com.kstrinadka.railway.workers.model.Worker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,18 +9,15 @@ import java.util.List;
 @Service
 public class BrigadesService {
 
+    private final BrigadeRepository brigadeRepository;
+    private final BrigadeMapper brigadeMapper;
 
     @Autowired
-    BrigadeRepository brigadeRepository;
-
-    @Autowired
-    BrigadeMapper brigadeMapper;
-
-
-    public BrigadesService(){
-
+    public BrigadesService(BrigadeRepository brigadeRepository,
+                           BrigadeMapper brigadeMapper){
+        this.brigadeMapper = brigadeMapper;
+        this.brigadeRepository = brigadeRepository;
     }
-
 
     public List<Worker> getWorkersInBrigade(Integer id) {
         return null;
@@ -35,7 +31,4 @@ public class BrigadesService {
         return brigadeMapper.brigadesToDtos(brigadeRepository.findAll());
     }
 
-    /*public List<WorkerDto> getByBrigadeId(Long id) {
-        return brigadeMapper.brigadesToDtos(brigadeRepository.findAllByBrigadeid(id));
-    }*/
 }

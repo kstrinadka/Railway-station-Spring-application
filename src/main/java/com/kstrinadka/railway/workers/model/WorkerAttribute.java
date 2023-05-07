@@ -1,4 +1,4 @@
-package com.kstrinadka.railway.worker.model;
+package com.kstrinadka.railway.workers.model;
 
 
 import jakarta.persistence.Embeddable;

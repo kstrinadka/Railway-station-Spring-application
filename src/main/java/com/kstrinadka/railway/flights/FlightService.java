@@ -7,18 +7,14 @@ import java.util.List;
 
 @Service
 public class FlightService {
-
-
-
-    private FlightMapper flightMapper;
-    private FlightRepository flightRepository;
+    private final FlightMapper flightMapper;
+    private final FlightRepository flightRepository;
 
     public FlightService(FlightMapper flightMapper,
                          FlightRepository flightRepository) {
         this.flightMapper = flightMapper;
         this.flightRepository = flightRepository;
     }
-
 
     public List<FlightDto> getAllFlights() {
             return flightMapper.flightsToDtos(flightRepository.findAll());

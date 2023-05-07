@@ -2,14 +2,12 @@ package com.kstrinadka.railway.stationsAndRoutes;
 
 
 import com.kstrinadka.railway.stationsAndRoutes.dto.RouteDto;
-import com.kstrinadka.railway.tickets.TicketDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 @RestController
@@ -23,7 +21,7 @@ public class RouteController {
 
     /**
      * - нет кнопки
-     * - не проверено
+     * - работает
      * @return - Перечень всех маршрутов
      */
     @GetMapping(path = "/all")
@@ -39,7 +37,7 @@ public class RouteController {
 
     /**
      * - нет кнопки
-     * - не проверено
+     * - работает
      *
      * -- Получить перечень маршрутов указанной категоpии
      */
@@ -50,7 +48,7 @@ public class RouteController {
 
     /**
      * - нет кнопки
-     * - не проверено
+     * - работает
      *
      * -- Получить перечень маршрутов следующих в определенном напpавлении
      */

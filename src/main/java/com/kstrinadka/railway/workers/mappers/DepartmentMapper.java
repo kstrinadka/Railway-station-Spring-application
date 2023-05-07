@@ -1,8 +1,8 @@
-package com.kstrinadka.railway.worker.mappers;
+package com.kstrinadka.railway.workers.mappers;
 
 
-import com.kstrinadka.railway.worker.dto.DepartmentDto;
-import com.kstrinadka.railway.worker.model.Department;
+import com.kstrinadka.railway.workers.dto.DepartmentDto;
+import com.kstrinadka.railway.workers.model.Department;
 import org.mapstruct.Mapper;
 
 import java.util.List;

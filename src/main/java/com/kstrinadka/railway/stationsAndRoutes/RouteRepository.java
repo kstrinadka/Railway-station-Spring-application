@@ -15,24 +15,27 @@ public interface RouteRepository  extends JpaRepository<Route, Long> {
     /**
      * -- Получить перечень маршрутов указанной категоpии
      */
-    @Query(value = "SELECT rt.* \n" +
-            "FROM Routes rt \n" +
-            "WHERE rt.Category = :category ;", nativeQuery = true)
+    @Query(value = """
+            SELECT rt.*\s
+            FROM Routes rt\s
+            WHERE rt.Category = :category ;""", nativeQuery = true)
     List<Route> getAllRoutesByCategory(@Param("category") String category);
 
 
     /**
      * -- Получить перечень маршрутов следующих в определенном напpавлении
      */
-    @Query(value = "SELECT rt.*\n" +
-            "FROM Stations st, Routes rt, (SELECT R.RouteNumber, (SELECT StationsOnRoute.StationID\n" +
-            "                                               FROM StationsOnRoute\n" +
-            "                                               WHERE StationsOnRoute.RouteNumber = R.RouteNumber\n" +
-            "                                               ORDER BY StationsOnRoute.OrderStation DESC\n" +
-            "                                               LIMIT 1) AS FinalStation\n" +
-            "                        FROM Routes R) AS FinalStationPerRoute\n" +
-            "WHERE st.StationName = :direction \n" +
-            "  AND FinalStationPerRoute.FinalStation = st.StationID\n" +
-            "  AND rt.RouteNumber = FinalStationPerRoute.RouteNumber;", nativeQuery = true)
-    List<Route> getAllRoutesByDirection(@Param("category") String direction);
+    @Query(value = """
+            SELECT rt.*
+            FROM Stations st, Routes rt, (SELECT R.RouteNumber, (SELECT StationsOnRoute.StationID
+                                                           FROM StationsOnRoute
+                                                           WHERE StationsOnRoute.RouteNumber = R.RouteNumber
+                                                           ORDER BY StationsOnRoute.OrderStation DESC
+                                                           LIMIT 1) AS FinalStation
+                                    FROM Routes R) AS FinalStationPerRoute
+            WHERE st.StationName = :direction\s
+              AND FinalStationPerRoute.FinalStation = st.StationID
+              AND rt.RouteNumber = FinalStationPerRoute.RouteNumber;""", nativeQuery = true)
+    List<Route> getAllRoutesByDirection(@Param("direction") String direction);
+
 }

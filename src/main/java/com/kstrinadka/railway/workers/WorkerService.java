@@ -1,14 +1,14 @@
-package com.kstrinadka.railway.worker;
+package com.kstrinadka.railway.workers;
 
 
 import com.kstrinadka.railway.brigades.BrigadesService;
-import com.kstrinadka.railway.worker.dto.AdministratorDto;
-import com.kstrinadka.railway.worker.dto.WorkerDto;
-import com.kstrinadka.railway.worker.mappers.AdministratorMapper;
-import com.kstrinadka.railway.worker.mappers.WorkerMapperMS;
-import com.kstrinadka.railway.worker.model.Worker;
-import com.kstrinadka.railway.worker.repositories.AdministratorRepository;
-import com.kstrinadka.railway.worker.repositories.WorkerRepository;
+import com.kstrinadka.railway.workers.dto.AdministratorDto;
+import com.kstrinadka.railway.workers.dto.WorkerDto;
+import com.kstrinadka.railway.workers.mappers.AdministratorMapper;
+import com.kstrinadka.railway.workers.mappers.WorkerMapperMS;
+import com.kstrinadka.railway.workers.model.Worker;
+import com.kstrinadka.railway.workers.repositories.AdministratorRepository;
+import com.kstrinadka.railway.workers.repositories.WorkerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,11 +20,10 @@ public class WorkerService {
 
 
 
-    private WorkerRepository workerRepository;
+    private final WorkerRepository workerRepository;
     private final AdministratorMapper administratorMapper;
     private final AdministratorRepository administratorRepository;
     private final WorkerMapperMS workerMapper;
-    private final BrigadesService brigadesService;
 
     @Autowired
     public WorkerService(WorkerRepository workerRepository,
@@ -36,23 +35,15 @@ public class WorkerService {
         this. workerMapper = workerMapper;
         this.administratorMapper = administratorMapper;
         this.administratorRepository = administratorRepository;
-        this.brigadesService = brigadesService;
     }
 
-
-
-
-    public void testFindWorker() {
-        Optional<Worker> optionalWorker = workerRepository.findById(5L);
-    }
 
     public WorkerDto getWorker(Integer id) {
         return null;
     }
 
     public List<WorkerDto> getAllWorkers() {
-        List<WorkerDto> mappedList = workerMapper.listWorkerToDtos(workerRepository.findAll());
-        return mappedList;
+        return workerMapper.listWorkerToDtos(workerRepository.findAll());
     }
 
 
@@ -61,8 +52,7 @@ public class WorkerService {
     }
 
     public List<WorkerDto> getByWorkExperience() {
-        List<WorkerDto> dtos = workerMapper.listWorkerToDtos(workerRepository.findAllByOrderByStationstartdateAsc());
-        return dtos;
+        return workerMapper.listWorkerToDtos(workerRepository.findAllByOrderByStationstartdateAsc());
     }
 
     public List<WorkerDto> getByDepartment(Long id) {

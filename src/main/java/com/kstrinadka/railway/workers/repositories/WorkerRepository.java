@@ -1,7 +1,7 @@
-package com.kstrinadka.railway.worker.repositories;
+package com.kstrinadka.railway.workers.repositories;
 
 
-import com.kstrinadka.railway.worker.model.Worker;
+import com.kstrinadka.railway.workers.model.Worker;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -49,33 +49,36 @@ public interface WorkerRepository extends JpaRepository<Worker, Long> {
     /**
      * получить список работников конкретной бригады
      */
-    @Query(value = "SELECT workers.* FROM workers\n" +
-            "INNER JOIN locomotives\n" +
-            "        ON workers.brigadeid = locomotives.locomotivebrigadeid\n" +
-            "WHERE locomotives.locomotiveid = :locomotiveId \n" +
-            "ORDER BY  workers.workerid", nativeQuery = true)
+    @Query(value = """
+            SELECT workers.* FROM workers
+            INNER JOIN locomotives
+                    ON workers.brigadeid = locomotives.locomotivebrigadeid
+            WHERE locomotives.locomotiveid = :locomotiveId\s
+            ORDER BY  workers.workerid""", nativeQuery = true)
     List<Worker> getBrigadeWorkersByLocomotive(Long locomotiveId);
 
     /**
      * Получить перечень водителей локомотивов прошедших медосмотр в указанный год
      * 6 - department of Drivers
      */
-    @Query(value = "SELECT *\n" +
-            "FROM Workers W\n" +
-            "WHERE W.DepartmentID = 6;", nativeQuery = true)
+    @Query(value = """
+            SELECT *
+            FROM Workers W
+            WHERE W.DepartmentID = 6;""", nativeQuery = true)
     List<Worker> getLocomotiveDrivers();
 
     /**
      * Получить перечень водителей локомотивов прошедших медосмотр в указанный год
      * 6 - department of Drivers
      */
-    @Query(value = "SELECT w.*\n" +
-            "FROM workers w\n" +
-            "INNER JOIN medexams m\n" +
-            "        ON w.workerid = m.workerid\n" +
-            "WHERE w.departmentid = 6\n" +
-            "        AND m.passexam = True\n" +
-            "        AND m.yearexam = :year\n" +
-            "ORDER BY w.salary;", nativeQuery = true)
+    @Query(value = """
+            SELECT w.*
+            FROM workers w
+            INNER JOIN medexams m
+                    ON w.workerid = m.workerid
+            WHERE w.departmentid = 6
+                    AND m.passexam = True
+                    AND m.yearexam = :year
+            ORDER BY w.salary;""", nativeQuery = true)
     List<Worker> getLocomotiveDriversPassedMedExamInYear(Long year);
 }

@@ -1,4 +1,4 @@
-package com.kstrinadka.railway.worker.model;
+package com.kstrinadka.railway.workers.model;
 
 
 import jakarta.persistence.*;
@@ -6,9 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * Сущность администратора - id работника и его департамент

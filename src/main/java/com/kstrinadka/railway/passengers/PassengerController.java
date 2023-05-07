@@ -1,10 +1,7 @@
 package com.kstrinadka.railway.passengers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -22,7 +19,7 @@ public class PassengerController {
 
     /**
      * - нет кнопки
-     * - не проверено
+     * - работает
      * @return - Перечень всех пассажирова
      */
     @GetMapping(path = "/all")
@@ -39,7 +36,7 @@ public class PassengerController {
 
     /**
      * - нет кнопки
-     * - не проверено
+     * - работает
      * -- Получить перечень пассажиpов на указанном pейсе
      */
     @GetMapping(path = "/byflight/{id}")
@@ -49,28 +46,28 @@ public class PassengerController {
 
     /**
      * - нет кнопки
-     * - не проверено
+     * - работает
      * -- Получить перечень пассажиpов уехавших в указанный день
      */
-    @GetMapping(path = "/bydepartureday/{day}")
-    public List<PassengerDto> getAllPassengersByDepartureDay(@PathVariable Timestamp day) {
+    @GetMapping(path = "/bydepartureday")
+    public List<PassengerDto> getAllPassengersByDepartureDay(@RequestParam Timestamp  day) {
         return passengerService.getAllPassengersByDepartureDay(day);
     }
 
     /**
      * - нет кнопки
-     * - не проверено
+     * - работает
      * -- Получить перечень пассажиpов уехавших за границу в указанный день
      */
-    @GetMapping(path = "/bydepartureday/{day}")
-    public List<PassengerDto> getAllPassengersAbroadByDepartureDay(@PathVariable Timestamp day) {
+    @GetMapping(path = "/bydepartureday/abroad")
+    public List<PassengerDto> getAllPassengersAbroadByDepartureDay(@RequestParam  Timestamp  day) {
         return passengerService.getAllPassengersAbroadByDepartureDay(day);
     }
 
     /**
      * - нет кнопки
-     * - не проверено
-     * Перечень всех пассажирова по пpизнаку сдачи вещей в багажное отделение
+     * - работает
+     * Перечень всех пассажиров по пpизнаку сдачи вещей в багажное отделение
      */
     @GetMapping(path = "/packing/true")
     public List<PassengerDto> getAllPassengersByPackingIsTrue() {
@@ -79,17 +76,17 @@ public class PassengerController {
 
     /**
      * - нет кнопки
-     * - не проверено
+     * - работает
      * Перечень всех пассажирова по половому пpизнаку
      */
-    @GetMapping(path = "/gender/{gender}")
-    public List<PassengerDto> getAllPassengersByGenderIdentity(@PathVariable String gender) {
+    @GetMapping(path = "/gender")
+    public List<PassengerDto> getAllPassengersByGenderIdentity(@RequestParam String gender) {
         return passengerService.getAllPassengersByGenderIdentity(gender);
     }
 
     /**
      * - нет кнопки
-     * - не проверено
+     * - работает
      * Перечень всех пассажирова по возрасту
      */
     @GetMapping(path = "/byage")

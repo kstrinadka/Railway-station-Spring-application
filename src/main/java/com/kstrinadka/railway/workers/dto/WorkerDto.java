@@ -1,6 +1,6 @@
-package com.kstrinadka.railway.worker.dto;
+package com.kstrinadka.railway.workers.dto;
 
-import com.kstrinadka.railway.worker.model.Worker;
+import com.kstrinadka.railway.workers.model.Worker;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

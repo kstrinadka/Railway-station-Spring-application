@@ -1,7 +1,7 @@
-package com.kstrinadka.railway.worker.repositories;
+package com.kstrinadka.railway.workers.repositories;
 
 
-import com.kstrinadka.railway.worker.model.Department;
+import com.kstrinadka.railway.workers.model.Department;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

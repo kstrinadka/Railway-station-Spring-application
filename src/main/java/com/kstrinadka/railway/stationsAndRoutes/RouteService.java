@@ -33,6 +33,7 @@ public class RouteService {
     }
 
     public List<RouteDto> getAllRoutesByDirection(String direction) {
+        //return null;
         return routeMapper.routesToDtos(routeRepository.getAllRoutesByDirection(direction));
     }
 }

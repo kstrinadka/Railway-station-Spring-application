@@ -1,11 +1,11 @@
-package com.kstrinadka.railway.worker.dto;
+package com.kstrinadka.railway.workers.dto;
 
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * A DTO for the {@link com.kstrinadka.railway.worker.model.Department} entity
+ * A DTO for the {@link com.kstrinadka.railway.workers.model.Department} entity
  */
 @Data
 @NoArgsConstructor

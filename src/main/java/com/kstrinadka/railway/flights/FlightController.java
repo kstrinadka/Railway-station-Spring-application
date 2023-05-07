@@ -1,6 +1,5 @@
 package com.kstrinadka.railway.flights;
 
-
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -8,14 +7,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/flights")
 public class FlightController {
-
-
     private final FlightService flightService;
 
     public FlightController(FlightService flightService) {
         this.flightService = flightService;
     }
-
 
     /**
      * - нет кнопки
@@ -30,8 +26,6 @@ public class FlightController {
 
     /*7) Получить перечень и общее число отмененных pейсов полностью, в
     указанном напpавлении, по указанному маpшpуту.*/
-
-
     /**
      * - нет кнопки
      * - работает
@@ -63,11 +57,9 @@ public class FlightController {
     }
 
 
-
     /*8) Получить перечень и общее число задеpжанных pейсов полностью, по
     указанной пpичине, по указанному маpшpуту, и количество сданных
     билетов за вpемя задеpжки.*/
-
     /**
      * - нет кнопки
      * - работает

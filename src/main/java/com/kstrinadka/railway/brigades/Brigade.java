@@ -1,7 +1,7 @@
 package com.kstrinadka.railway.brigades;
 
 
-import com.kstrinadka.railway.worker.model.Department;
+import com.kstrinadka.railway.workers.model.Department;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

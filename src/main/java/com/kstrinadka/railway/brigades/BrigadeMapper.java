@@ -1,7 +1,7 @@
 package com.kstrinadka.railway.brigades;
 
 
-import com.kstrinadka.railway.worker.mappers.DepartmentMapper;
+import com.kstrinadka.railway.workers.mappers.DepartmentMapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;

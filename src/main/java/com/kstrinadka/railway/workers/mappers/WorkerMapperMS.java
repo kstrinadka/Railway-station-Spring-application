@@ -1,9 +1,9 @@
-package com.kstrinadka.railway.worker.mappers;
+package com.kstrinadka.railway.workers.mappers;
 
 
 import com.kstrinadka.railway.brigades.BrigadeMapper;
-import com.kstrinadka.railway.worker.dto.WorkerDto;
-import com.kstrinadka.railway.worker.model.Worker;
+import com.kstrinadka.railway.workers.dto.WorkerDto;
+import com.kstrinadka.railway.workers.model.Worker;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;

@@ -18,7 +18,7 @@ public class TicketController {
 
     /**
      * - нет кнопки
-     * - не проверено
+     * - работает
      * @return - Перечень всех рейсов
      */
     @GetMapping(path = "/all")
@@ -35,7 +35,7 @@ public class TicketController {
 
     /**
      * - нет кнопки
-     * - не проверено
+     * - работает
      * -- Получить перечень пpоданных билетов за указанный интервал времени на опpеделенные маpшpуты
      */
     @GetMapping(path = "/onroute/inperiod")
@@ -49,7 +49,7 @@ public class TicketController {
 
     /**
      * - нет кнопки
-     * - не проверено
+     * - работает
      * -- Получить перечень пpоданных билетов по длительности маршрута
      */
     @GetMapping(path = "/byduration")
@@ -60,7 +60,7 @@ public class TicketController {
 
     /**
      * - нет кнопки
-     * - не проверено
+     * - работает
      * -- Получить перечень пpоданных билетов по цене билета
      */
     @GetMapping(path = "/bycost")
@@ -75,7 +75,7 @@ public class TicketController {
 
     /**
      * - нет кнопки
-     * - не проверено
+     * - работает
      * -- Получить перечень невыкупленных билетов на указанном pейсe
      */
     @GetMapping(path = "/notsold/flight/{id}")
@@ -86,19 +86,19 @@ public class TicketController {
 
     /**
      * - нет кнопки
-     * - не проверено
+     * - работает
      * Получить перечень невыкупленных билетов в определенный день
      *
      */
-    @GetMapping(path = "/notsold/day/{day}")
-    public List<TicketDto> getAllNotSoldTicketsByDay(@PathVariable Timestamp day) {
+    @GetMapping(path = "/notsold/day/")
+    public List<TicketDto> getAllNotSoldTicketsByDay(@RequestParam  Timestamp  day) {
         return ticketService.getAllNotSoldTicketsByDay(day);
     }
 
 
     /**
      * - нет кнопки
-     * - не проверено
+     * - работает
      * -- Получить перечень невыкупленных билетов на некотором маpшpуте
      */
     @GetMapping(path = "/notsold/route/{id}")
@@ -113,8 +113,8 @@ public class TicketController {
 
     /**
      * - нет кнопки
-     * - не проверено
-     * -- Получить общее число сданных билетов на указанный pейс
+     * - работает
+     * -- Получить перечень сданных билетов на указанный pейс
      */
     @GetMapping(path = "/refund/flight/{id}")
     public List<TicketDto> getAllRefundTicketsByFlight(@PathVariable Long id) {
@@ -123,18 +123,18 @@ public class TicketController {
 
     /**
      * - нет кнопки
-     * - не проверено
-     * -- Получить общее число сданных билетов на указанный день
+     * - работает
+     * -- Получить перечень сданных билетов на указанный день
      */
-    @GetMapping(path = "/refund/day/{day}")
-    public List<TicketDto> getAllRefundTicketsByDay(@PathVariable Timestamp day) {
+    @GetMapping(path = "/refund/day")
+    public List<TicketDto> getAllRefundTicketsByDay(@RequestParam  Timestamp  day) {
         return ticketService.getAllRefundTicketsByDay(day);
     }
 
 
     /**
      * - нет кнопки
-     * - не проверено
+     * - работает
      * -- Получить перечень сданных билетов на указанный маpшpут
      */
     @GetMapping(path = "/refund/route/{id}")

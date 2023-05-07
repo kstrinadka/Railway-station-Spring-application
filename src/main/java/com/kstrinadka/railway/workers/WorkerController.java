@@ -1,8 +1,8 @@
-package com.kstrinadka.railway.worker;
+package com.kstrinadka.railway.workers;
 
 
-import com.kstrinadka.railway.worker.dto.AdministratorDto;
-import com.kstrinadka.railway.worker.dto.WorkerDto;
+import com.kstrinadka.railway.workers.dto.AdministratorDto;
+import com.kstrinadka.railway.workers.dto.WorkerDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
