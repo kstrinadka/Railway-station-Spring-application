@@ -80,7 +80,7 @@ public interface FlightRepository extends JpaRepository<Flight, Long> {
     @Query(value = """
             SELECT tb.*
             FROM Timetable tb
-            WHERE tb.TimeDelay != '00:00:00' AND
-                    tb.RouteNumber = :route_id ;""", nativeQuery = true)
+            WHERE tb.delay = true
+                AND tb.RouteNumber = :route_id ;""", nativeQuery = true)
     List<Flight> getAllDelayedFlightsByRoute(@Param("route_id") Long route_id);
 }

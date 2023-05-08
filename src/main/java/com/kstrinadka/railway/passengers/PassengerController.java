@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.sql.Timestamp;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/passengers")
 public class PassengerController {
@@ -18,7 +19,7 @@ public class PassengerController {
 
 
     /**
-     * - нет кнопки
+     * - кнопка работает
      * - работает
      * @return - Перечень всех пассажирова
      */
@@ -35,7 +36,7 @@ public class PassengerController {
 
 
     /**
-     * - нет кнопки
+     * - кнопка работает
      * - работает
      * -- Получить перечень пассажиpов на указанном pейсе
      */
@@ -45,7 +46,7 @@ public class PassengerController {
     }
 
     /**
-     * - нет кнопки
+     * - кнопка работает
      * - работает
      * -- Получить перечень пассажиpов уехавших в указанный день
      */
@@ -55,7 +56,7 @@ public class PassengerController {
     }
 
     /**
-     * - нет кнопки
+     * - кнопка работает
      * - работает
      * -- Получить перечень пассажиpов уехавших за границу в указанный день
      */
@@ -65,7 +66,7 @@ public class PassengerController {
     }
 
     /**
-     * - нет кнопки
+     * - кнопка работает
      * - работает
      * Перечень всех пассажиров по пpизнаку сдачи вещей в багажное отделение
      */
@@ -75,7 +76,7 @@ public class PassengerController {
     }
 
     /**
-     * - нет кнопки
+     * - кнопка работает
      * - работает
      * Перечень всех пассажирова по половому пpизнаку
      */
@@ -85,7 +86,7 @@ public class PassengerController {
     }
 
     /**
-     * - нет кнопки
+     * - кнопка работает
      * - работает
      * Перечень всех пассажирова по возрасту
      */
