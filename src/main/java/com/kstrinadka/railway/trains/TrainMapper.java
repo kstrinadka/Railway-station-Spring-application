@@ -1,6 +1,7 @@
 package com.kstrinadka.railway.trains;
 
 
+import com.kstrinadka.railway.trains.dto.TrainDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
@@ -12,13 +13,13 @@ import java.util.List;
 public interface TrainMapper {
 
     // сущность -> DTO
-    @Mapping(target = "locomotiveid", source = "locomotive.locomotiveid")
+    @Mapping(target = "locomotive", source = "locomotive")
     TrainDto trainToDto(Train train);
     List<TrainDto> trainsToDtos(List<Train> trains);
 
 
     // DTO -> сущность
-    @Mapping(target = "locomotive.locomotiveid", source = "locomotiveid")
+    @Mapping(target = "locomotive", source = "locomotive")
     Train dtoToTrain(TrainDto dto);
     List<Train> dtosToTrains(List<TrainDto> dtos);
 

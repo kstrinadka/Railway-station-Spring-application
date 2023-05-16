@@ -25,12 +25,13 @@ public interface TrainRepository extends JpaRepository<Train, Long> {
      * перечень поездов по длительности маршрута
      */
     @Query(value = """
-            SELECT DISTINCT Trains.*, routes.duration
-            FROM Timetable, Trains, Tickets, routes
-            WHERE Timetable.TrainNumber = Trains.TrainNumber
+            SELECT DISTINCT tr.*, MIN(routes.duration) duration
+            FROM Timetable, Trains tr, Tickets, routes
+            WHERE Timetable.TrainNumber = tr.TrainNumber
                 AND Tickets.FlightNumber = Timetable.FlightNumber
                 AND routes.routenumber = timetable.routenumber
-            ORDER BY routes.duration;""", nativeQuery = true)
+            GROUP BY tr.trainnumber
+            ORDER BY duration;""", nativeQuery = true)
     List<Train> getAllTrainsByRouteDuration();
 
 
@@ -38,12 +39,13 @@ public interface TrainRepository extends JpaRepository<Train, Long> {
      * перечень поездов по цене билета
      */
     @Query(value = """
-            SELECT DISTINCT Trains.*, routes.cost
-            FROM Timetable, Trains, Tickets, routes
-            WHERE Timetable.TrainNumber = Trains.TrainNumber
+            SELECT DISTINCT tr.*, MIN(routes.cost) route_cost
+            FROM Timetable, Trains tr, Tickets, routes
+            WHERE Timetable.TrainNumber = tr.TrainNumber
                 AND Tickets.FlightNumber = Timetable.FlightNumber
                 AND routes.routenumber = timetable.routenumber
-            ORDER BY routes.cost;""", nativeQuery = true)
+            GROUP BY tr.trainnumber
+            ORDER BY route_cost;""", nativeQuery = true)
     List<Train> getAllTrainsByTicketCost();
 
 

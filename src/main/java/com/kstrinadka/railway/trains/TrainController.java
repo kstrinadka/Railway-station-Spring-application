@@ -1,7 +1,10 @@
 package com.kstrinadka.railway.trains;
 
 
+import com.kstrinadka.railway.trains.dto.TrainDto;
+import com.kstrinadka.railway.trains.dto.TrainFrontDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +23,21 @@ public class TrainController {
         this.trainService = trainService;
     }
 
+    // Создать новый поезд
+    @PostMapping("/create")
+    public TrainDto createTrain(@RequestBody TrainDto dto) {
+        return trainService.saveTrain(dto);
+    }
 
+
+    /**
+     * @param dto - сокращенный JSON с фронта
+     * @return
+     */
+    @PostMapping("/createfront")
+    public ResponseEntity<TrainDto> createTrainFront(@RequestBody TrainFrontDto dto) {
+        return trainService.createTrainFront(dto);
+    }
 
     /*6) Получить перечень и общее число поездов на указанном маpшpуте, по
     длительности маршрута, по цене билета и по всем этим кpитеpиям сpазу.*/

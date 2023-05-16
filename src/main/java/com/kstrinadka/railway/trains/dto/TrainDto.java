@@ -1,6 +1,8 @@
-package com.kstrinadka.railway.trains;
+package com.kstrinadka.railway.trains.dto;
 
 
+import com.kstrinadka.railway.locomotives.LocomotiveDto;
+import com.kstrinadka.railway.trains.Train;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,5 +14,5 @@ import lombok.NoArgsConstructor;
 public class TrainDto {
     private Long trainnumber;
     private String typetrain;
-    private Long locomotiveid;
+    private LocomotiveDto locomotive;
 }

@@ -19,7 +19,7 @@ import lombok.Setter;
 @Setter
 public class Train {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "trainnumber", nullable = false)
     private Long trainnumber;
 
