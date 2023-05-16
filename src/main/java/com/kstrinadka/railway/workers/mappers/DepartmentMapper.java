@@ -11,6 +11,7 @@ import java.util.List;
 public interface DepartmentMapper {
 
     // сущность -> DTO
+
     DepartmentDto departmentToDto(Department department);
     List<DepartmentDto> departmentsToDtos(List<Department> departments);
 
