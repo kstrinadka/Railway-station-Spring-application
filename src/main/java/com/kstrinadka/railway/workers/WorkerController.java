@@ -1,9 +1,14 @@
 package com.kstrinadka.railway.workers;
 
 
+import com.kstrinadka.railway.trains.dto.TrainDto;
+import com.kstrinadka.railway.trains.dto.TrainFrontDto;
 import com.kstrinadka.railway.workers.dto.AdministratorDto;
 import com.kstrinadka.railway.workers.dto.WorkerDto;
+import com.kstrinadka.railway.workers.dto.WorkerFrontDto;
+import com.kstrinadka.railway.workers.model.Worker;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,8 +22,8 @@ public class WorkerController {
     WorkerService workerService;
 
     @GetMapping(path = "/{id}")
-    public WorkerDto getWorker(@PathVariable Integer id) {
-        return workerService.getWorker(id);
+    public WorkerDto getWorker(@PathVariable Long id) {
+        return workerService.getWorkerDtoById(id);
     }
 
 
@@ -40,6 +45,34 @@ public class WorkerController {
     @GetMapping(path = "/all")
     public List<WorkerDto> getAllWorkers() {
         return workerService.getAllWorkers();
+    }
+
+
+    // Создать нового работника
+    @PostMapping("/create")
+    public WorkerDto createWorker(@RequestBody WorkerDto worker) {
+        return workerService.saveWorker(worker);
+    }
+
+    /**
+     * @param dto - сокращенный JSON с фронта
+     * @return
+     */
+    @PostMapping("/createfront")
+    public ResponseEntity<WorkerDto> createWorkerFront(@RequestBody WorkerFrontDto dto) {
+        return workerService.createWorkerFront(dto);
+    }
+
+    // Обновить работника по id
+    @PutMapping("/update/{id}")
+    public WorkerDto updateWorker(@PathVariable Long id, @RequestBody WorkerDto worker) {
+        return workerService.updateWorker(id, worker);
+    }
+
+    // Удалить работника по id
+    @DeleteMapping("/delete/{id}")
+    public void deleteWorker(@PathVariable Long id) {
+        workerService.deleteWorker(id);
     }
 
 

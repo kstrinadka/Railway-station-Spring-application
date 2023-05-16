@@ -1,6 +1,5 @@
 package com.kstrinadka.railway.workers.mappers;
 
-
 import com.kstrinadka.railway.brigades.BrigadeMapper;
 import com.kstrinadka.railway.workers.dto.WorkerDto;
 import com.kstrinadka.railway.workers.model.Worker;
@@ -16,14 +15,14 @@ import java.util.List;
 public interface WorkerMapperMS {
 
     // сущность -> DTO
-    @Mapping(target = "departmentid", source = "department.departmentid")
-    @Mapping(target = "brigadeid", source = "brigade.brigadeid")
+    @Mapping(target = "department", source = "department")
+    @Mapping(target = "brigade", source = "brigade")
     WorkerDto workerToDto(Worker worker);
     List<WorkerDto> listWorkerToDtos(List<Worker> workers);
 
     // DTO -> сущность
-    @Mapping(target = "department.departmentid", source = "departmentid")
-    @Mapping(target = "brigade.brigadeid", source = "brigadeid")
+    @Mapping(target = "department", source = "department")
+    @Mapping(target = "brigade", source = "brigade")
     Worker DtoToWorker(WorkerDto workerDto);
     List<Worker> listWorkerDtosToWorkers(List<WorkerDto> workerDtos);
 

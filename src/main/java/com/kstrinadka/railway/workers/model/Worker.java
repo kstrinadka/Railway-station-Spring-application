@@ -5,6 +5,8 @@ import com.kstrinadka.railway.brigades.Brigade;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.sql.Date;
+
 /**
  * Сущность работника
  */
@@ -16,7 +18,7 @@ import lombok.*;
 @Setter
 public class Worker {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "workerid", nullable = false)
     private Long workerId;
 
@@ -28,13 +30,13 @@ public class Worker {
 
     private String gender;
 
-    private String birthday;
+    private Date birthday;
 
-    private String countchildren;
+    private Long countchildren;
 
-    private String stationstartdate;
+    private Date stationstartdate;
 
-    private String salary;
+    private Long salary;
 
     @ManyToOne
     @JoinColumn (name = "departmentid", referencedColumnName = "departmentid", nullable = false)
@@ -43,5 +45,4 @@ public class Worker {
     @ManyToOne
     @JoinColumn (name = "brigadeid", referencedColumnName = "brigadeid", nullable = false)
     private Brigade brigade;
-
 }
