@@ -1,5 +1,7 @@
 package com.kstrinadka.railway.flights;
 
+import com.kstrinadka.railway.stationsAndRoutes.dto.RouteDto;
+import com.kstrinadka.railway.trains.dto.TrainDto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,10 +16,10 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 public class FlightDto implements Serializable {
     private Long flightnumber;
-    private Long trainnumber;
+    private TrainDto train;
     private Timestamp departure;
     private Timestamp arrival;
-    private Long routenumber;
+    private RouteDto route;
     private Boolean cancel;
     private String reasoncancellation;
     private Time timedelay;

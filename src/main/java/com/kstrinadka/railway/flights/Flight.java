@@ -23,7 +23,7 @@ import java.sql.Timestamp;
 @Setter
 public class Flight {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "flightnumber", nullable = false)
     private Long flightnumber;
 

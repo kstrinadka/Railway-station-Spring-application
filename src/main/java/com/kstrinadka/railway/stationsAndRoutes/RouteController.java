@@ -1,7 +1,9 @@
 package com.kstrinadka.railway.stationsAndRoutes;
 
 
+import com.kstrinadka.railway.locomotives.LocomotiveDto;
 import com.kstrinadka.railway.stationsAndRoutes.dto.RouteDto;
+import com.kstrinadka.railway.workers.dto.WorkerDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +20,7 @@ public class RouteController {
 
 
     /**
-     * - нет кнопки
+     * - работает кнопка
      * - работает
      * @return - Перечень всех маршрутов
      */
@@ -27,6 +29,18 @@ public class RouteController {
         return routeService.getAllRoutes();
     }
 
+    // Создать новый маршрут
+    @PostMapping("/create")
+    public RouteDto createRoute(@RequestBody RouteDto dto) {
+        return routeService.saveRoute(dto);
+    }
+
+
+    /*// Создать новый маршрут
+    @PostMapping("/create")
+    public RouteDto createWorker(@RequestBody RouteDto routeDto) {
+        return routeService.saveRoute(routeDto);
+    }*/
 
 
     /*10) Получить перечень и общее число маршрутов указанной категоpии,
@@ -34,10 +48,10 @@ public class RouteController {
 
 
     /**
-     * - нет кнопки
+     * - работает кнопка
      * - работает
      *
-     * -- Получить перечень маршрутов указанной категоpии
+     * -- Получить перечень маршрутов указанной категоpии -> 'Туристический', 'Специальный', 'Внутренний', 'Международный'
      */
     @GetMapping(path = "/category")
     public List<RouteDto> getAllRoutesByCategory(@RequestParam String category) {
@@ -45,10 +59,10 @@ public class RouteController {
     }
 
     /**
-     * - нет кнопки
+     * - работает кнопка
      * - работает
      *
-     * -- Получить перечень маршрутов следующих в определенном напpавлении
+     * -- Получить перечень маршрутов следующих в определенном напpавлении -> 'Station 4', ...
      */
     @GetMapping(path = "/direction")
     public List<RouteDto> getAllRoutesByDirection(@RequestParam String direction) {

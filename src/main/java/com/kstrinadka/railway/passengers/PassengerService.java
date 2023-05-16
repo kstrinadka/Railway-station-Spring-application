@@ -59,4 +59,9 @@ public class PassengerService {
     public List<PassengerDto> getAllPassengersByAge() {
         return passengerMapper.passengersToDtos(passengerRepository.getAllPassengersByAge());
     }
+
+    public PassengerDto savePassenger(PassengerDto dto) {
+        Passenger passenger = passengerMapper.dtoToPassenger(dto);
+        return passengerMapper.passengerToDto(passengerRepository.save(passenger));
+    }
 }

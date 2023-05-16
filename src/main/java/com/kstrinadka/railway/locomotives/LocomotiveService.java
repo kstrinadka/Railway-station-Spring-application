@@ -1,6 +1,8 @@
 package com.kstrinadka.railway.locomotives;
 
 
+import com.kstrinadka.railway.locomotives.model.Locomotive;
+import com.kstrinadka.railway.workers.model.Worker;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
@@ -62,5 +64,22 @@ public class LocomotiveService {
 
     public List<LocomotiveDto> getAllLocomotivesByAge() {
         return locomotiveMapper.locomotivesToDtos(locomotiveRepository.findAllByOrderByBirthday());
+    }
+
+    public LocomotiveDto saveLocomotive(LocomotiveDto locomotiveDto) {
+        Locomotive locomotive = locomotiveMapper.dtoToLocomotive(locomotiveDto);
+        return locomotiveMapper.locomotiveToDto(locomotiveRepository.save(locomotive));
+    }
+
+    public LocomotiveDto getLocomotiveDtoById(Long id) {
+        Locomotive locomotive = locomotiveRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Locomotive not found"));;
+        return locomotiveMapper.locomotiveToDto(locomotive);
+    }
+
+    public Locomotive getLocomotiveById(Long id) {
+        Locomotive locomotive = locomotiveRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Locomotive not found"));;
+        return locomotive;
     }
 }

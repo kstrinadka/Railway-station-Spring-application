@@ -45,4 +45,9 @@ public class FlightService {
     public List<FlightDto> getAllDelayedFlightsByRoute(Long route_id) {
         return flightMapper.flightsToDtos(flightRepository.getAllDelayedFlightsByRoute(route_id));
     }
+
+    public FlightDto saveFlight(FlightDto dto) {
+        Flight flight = flightMapper.dtoToFlight(dto);
+        return flightMapper.flightToDto(flightRepository.save(flight));
+    }
 }

@@ -1,5 +1,6 @@
 package com.kstrinadka.railway.flights;
 
+import com.kstrinadka.railway.locomotives.LocomotiveDto;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,6 +13,12 @@ public class FlightController {
 
     public FlightController(FlightService flightService) {
         this.flightService = flightService;
+    }
+
+    // Создать нового рейса
+    @PostMapping("/create")
+    public FlightDto createLocomotive(@RequestBody FlightDto dto) {
+        return flightService.saveFlight(dto);
     }
 
     /**

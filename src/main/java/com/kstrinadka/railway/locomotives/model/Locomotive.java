@@ -17,7 +17,7 @@ import lombok.*;
 @Setter
 public class Locomotive {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "locomotiveid", nullable = false)
     private Long locomotiveid;
 

@@ -12,15 +12,15 @@ import java.util.List;
 public interface TicketMapper {
 
     // сущность -> DTO
-    @Mapping(target = "passengerpassport", source = "passenger.passportnumber")
-    @Mapping(target = "flightnumber", source = "flight.flightnumber")
+    @Mapping(target = "passenger", source = "passenger")
+    @Mapping(target = "flight", source = "flight")
     TicketDto ticketToDto(Ticket ticket);
     List<TicketDto> ticketsToDtos(List<Ticket> tickets);
 
 
     // DTO -> сущность
-    @Mapping(target = "passenger.passportnumber", source = "passengerpassport")
-    @Mapping(target = "flight.flightnumber", source = "flightnumber")
+    @Mapping(target = "passenger", source = "passenger")
+    @Mapping(target = "flight", source = "flight")
     Ticket dtoToTicket(TicketDto dto);
     List<Ticket> dtosToTickets(List<TicketDto> dtos);
 

@@ -18,7 +18,7 @@ import lombok.Setter;
 @Setter
 public class Route {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "routenumber", nullable = false)
     private Long routenumber;
 

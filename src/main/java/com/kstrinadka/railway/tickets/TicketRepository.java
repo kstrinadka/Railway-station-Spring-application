@@ -46,6 +46,30 @@ public interface TicketRepository  extends JpaRepository<Ticket, Long> {
                                               @Param("end_time") Timestamp end_time,
                                               @Param("route_id") Long route_id);
 
+    /**
+     * -- Получить перечень пpоданных билетов за указанный интервал времени
+     */
+    @Query(value = """
+            SELECT ts.*
+            FROM Tickets ts, Timetable tb
+            WHERE ts.FlightNumber = tb.FlightNumber
+              AND ts.TimePurchase >= :start_time\s
+              AND ts.TimePurchase <= :end_time\s
+            ORDER BY tb.Arrival - tb.Departure ;""", nativeQuery = true)
+    List<Ticket> getAllTicketsInPeriod(@Param("start_time") Timestamp start_time,
+                                              @Param("end_time") Timestamp end_time);
+
+
+    /**
+     * -- Получить перечень пpоданных билетов на опpеделенные маpшpуты
+     */
+    @Query(value = """
+            SELECT ts.*
+            FROM Tickets ts, Timetable tb
+            WHERE ts.FlightNumber = tb.FlightNumber
+              AND (tb.RouteNumber = :route_id )
+            ORDER BY tb.Arrival - tb.Departure ;""", nativeQuery = true)
+    List<Ticket> getAllTicketsOnRoute(@Param("route_id") Long route_id);
 
 
     /**

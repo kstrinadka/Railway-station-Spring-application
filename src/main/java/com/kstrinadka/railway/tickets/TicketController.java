@@ -1,6 +1,7 @@
 package com.kstrinadka.railway.tickets;
 
 
+import com.kstrinadka.railway.stationsAndRoutes.dto.RouteDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +28,12 @@ public class TicketController {
         return ticketService.getAllTickets();
     }
 
+    // Создать новый маршрут
+    @PostMapping("/create")
+    public TicketDto createTicket(@RequestBody TicketDto dto) {
+        return ticketService.saveTicket(dto);
+    }
+
 
     /*9) Получить перечень и сpеднее количество пpоданных билетов за
     указанный интервал времени на опpеделенные маpшpуты, по
@@ -39,12 +46,34 @@ public class TicketController {
      * - работает
      * -- Получить перечень пpоданных билетов за указанный интервал времени на опpеделенные маpшpуты
      */
-    @GetMapping(path = "/onroute/inperiod")
+    @GetMapping(path = "/onroute/inperiodonroute")
     public List<TicketDto> getAllTicketsOnRouteInPeriod(
             @RequestParam Timestamp start_time,
             @RequestParam  Timestamp end_time,
             @RequestParam Long route_id) {
         return ticketService.getAllTicketsOnRouteInPeriod(start_time, end_time, route_id);
+    }
+
+    /**
+     * - нет кнопки
+     * - работает
+     * -- Получить перечень пpоданных билетов за указанный интервал времени
+     */
+    @GetMapping(path = "/onroute/inperiod")
+    public List<TicketDto> getAllTicketsInPeriod(
+            @RequestParam Timestamp start_time,
+            @RequestParam  Timestamp end_time) {
+        return ticketService.getAllTicketsInPeriod(start_time, end_time);
+    }
+
+    /**
+     * - нет кнопки
+     * - работает
+     * -- Получить перечень пpоданных билетов  на опpеделенный маршрут
+     */
+    @GetMapping(path = "/onroute")
+    public List<TicketDto> getAllTicketsOnRoute(@RequestParam Long route_id) {
+        return ticketService.getAllTicketsOnRoute(route_id);
     }
 
 

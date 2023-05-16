@@ -12,15 +12,15 @@ import java.util.List;
 public interface FlightMapper {
 
     // сущность -> DTO
-    @Mapping(target = "trainnumber", source = "train.trainnumber")
-    @Mapping(target = "routenumber", source = "route.routenumber")
+    @Mapping(target = "train", source = "train")
+    @Mapping(target = "route", source = "route")
     FlightDto flightToDto(Flight flight);
     List<FlightDto> flightsToDtos(List<Flight> flights);
 
 
     // DTO -> сущность
-    @Mapping(target = "train.trainnumber", source = "trainnumber")
-    @Mapping(target = "route.routenumber", source = "routenumber")
+    @Mapping(target = "train", source = "train")
+    @Mapping(target = "route", source = "route")
     Flight dtoToFlight(FlightDto dto);
     List<Flight> dtosToFlights(List<FlightDto> dtos);
 

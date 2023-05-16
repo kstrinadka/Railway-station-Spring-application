@@ -78,4 +78,16 @@ public class TicketService {
     public List<TicketDto> getAllRefundTicketsByRoute(Long id) {
         return ticketMapper.ticketsToDtos(ticketRepository.getAllRefundTicketsByRoute(id));
     }
+
+    public List<TicketDto> getAllTicketsInPeriod(Timestamp start_time, Timestamp end_time) {
+        return ticketMapper.ticketsToDtos(ticketRepository.getAllTicketsInPeriod(start_time,end_time));
+    }
+
+    public List<TicketDto> getAllTicketsOnRoute(Long route_id) {
+        return ticketMapper.ticketsToDtos(ticketRepository.getAllTicketsOnRoute(route_id));
+    }
+
+    public TicketDto saveTicket(TicketDto dto) {
+        return ticketMapper.ticketToDto(ticketRepository.save(ticketMapper.dtoToTicket(dto)));
+    }
 }

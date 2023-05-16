@@ -15,9 +15,9 @@ import java.sql.Date;
 @Table(name = "passengers")
 @Getter
 @Setter
-public class Passenger {
+public class  Passenger {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "passportnumber", nullable = false)
     private Long passportnumber;
 

@@ -3,6 +3,7 @@ package com.kstrinadka.railway.stationsAndRoutes;
 
 import com.kstrinadka.railway.stationsAndRoutes.dto.RouteDto;
 import com.kstrinadka.railway.stationsAndRoutes.mappers.RouteMapper;
+import com.kstrinadka.railway.workers.model.Worker;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,5 +36,9 @@ public class RouteService {
     public List<RouteDto> getAllRoutesByDirection(String direction) {
         //return null;
         return routeMapper.routesToDtos(routeRepository.getAllRoutesByDirection(direction));
+    }
+
+    public RouteDto saveRoute(RouteDto routeDto) {
+        return routeMapper.routeToDto(routeRepository.save(routeMapper.dtoToRoute(routeDto)));
     }
 }

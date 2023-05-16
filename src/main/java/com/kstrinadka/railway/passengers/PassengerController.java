@@ -1,5 +1,6 @@
 package com.kstrinadka.railway.passengers;
 
+import com.kstrinadka.railway.locomotives.LocomotiveDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,6 @@ public class PassengerController {
 
 
 
-
     /**
      * - кнопка работает
      * - работает
@@ -26,6 +26,12 @@ public class PassengerController {
     @GetMapping(path = "/all")
     public List<PassengerDto> getAllPassengers() {
         return passengerService.getAllPassengers();
+    }
+
+    // Создать нового пассажира
+    @PostMapping("/create")
+    public PassengerDto createPassenger(@RequestBody PassengerDto dto) {
+        return passengerService.savePassenger(dto);
     }
 
 

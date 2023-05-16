@@ -15,17 +15,17 @@ public interface LocomotiveMapper {
 
 
     // сущность -> DTO
-    @Mapping(target = "stationid", source = "station.stationid")
-    @Mapping(target = "locomotivebrigadeid", source = "locomotivebrigade.brigadeid")
-    @Mapping(target = "repairmenbrigadeid", source = "repairmenbrigade.brigadeid")
+    @Mapping(target = "station", source = "station")
+    @Mapping(target = "locomotivebrigade", source = "locomotivebrigade")
+    @Mapping(target = "repairmenbrigade", source = "repairmenbrigade")
     LocomotiveDto locomotiveToDto(Locomotive locomotive);
     List<LocomotiveDto> locomotivesToDtos(List<Locomotive> locomotives);
 
 
     // DTO -> сущность
-    @Mapping(target = "station.stationid", source = "stationid")
-    @Mapping(target = "locomotivebrigade.brigadeid", source = "locomotivebrigadeid")
-    @Mapping(target = "repairmenbrigade.brigadeid", source = "repairmenbrigadeid")
+    @Mapping(target = "station", source = "station")
+    @Mapping(target = "locomotivebrigade", source = "locomotivebrigade")
+    @Mapping(target = "repairmenbrigade", source = "repairmenbrigade")
     Locomotive dtoToLocomotive(LocomotiveDto dto);
     List<Locomotive> dtosToLocomotives(List<LocomotiveDto> dtos);
 

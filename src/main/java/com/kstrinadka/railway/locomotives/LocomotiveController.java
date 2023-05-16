@@ -1,6 +1,7 @@
 package com.kstrinadka.railway.locomotives;
 
 
+import com.kstrinadka.railway.workers.dto.WorkerDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,6 +33,22 @@ public class LocomotiveController {
     @GetMapping(path = "/all")
     public List<LocomotiveDto> getAllLocomotives() {
         return locomotiveService.getAllLocomotives();
+    }
+
+    /**
+     * - нет кнопки
+     * - работает
+     * @return - Перечень всех локомотивов
+     */
+    @GetMapping(path = "/byid/{id}")
+    public LocomotiveDto getLocomotiveById(@PathVariable Long id) {
+        return locomotiveService.getLocomotiveDtoById(id);
+    }
+
+    // Создать нового локомотива
+    @PostMapping("/create")
+    public LocomotiveDto createLocomotive(@RequestBody LocomotiveDto locomotiveDto) {
+        return locomotiveService.saveLocomotive(locomotiveDto);
     }
 
     /**
