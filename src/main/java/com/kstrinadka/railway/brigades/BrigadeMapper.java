@@ -13,13 +13,13 @@ import java.util.List;
 public interface BrigadeMapper {
 
     // сущность -> DTO
-    @Mapping(target = "departmentid", source = "department.departmentid")
+    @Mapping(target = "department", source = "department")
     BrigadeDto brigadeToDto(Brigade brigade);
 
     List<BrigadeDto> brigadesToDtos(List<Brigade> brigades);
 
     // DTO -> сущность
-    @Mapping(target = "department.departmentid", source = "departmentid")
+    @Mapping(target = "department", source = "department")
     Brigade dtoToBrigade(BrigadeDto dto);
     List<Brigade> dtosToBrigades(List<BrigadeDto> dtos);
 }

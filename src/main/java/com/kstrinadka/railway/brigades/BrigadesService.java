@@ -23,6 +23,12 @@ public class BrigadesService {
         return null;
     }
 
+    public Brigade getBrigadeById(Long id) {
+        Brigade brigade = brigadeRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Brigade not found"));
+        return brigade;
+    }
+
     public Integer getCountWorkersInBrigade(Integer id) {
         return null;
     }
@@ -31,4 +37,21 @@ public class BrigadesService {
         return brigadeMapper.brigadesToDtos(brigadeRepository.findAll());
     }
 
+    public BrigadeDto createBrigade(BrigadeDto brigadeDto) {
+        return brigadeMapper.brigadeToDto(brigadeRepository.save(brigadeMapper.dtoToBrigade(brigadeDto)));
+    }
+
+    public void deleteBrigade(String name) {
+        Brigade brigade = brigadeRepository.findByName(name)
+                .orElseThrow(() -> new IllegalArgumentException("Brigade with name " + name + " not found"));
+        brigadeRepository.delete(brigade);
+    }
+
+    public BrigadeDto updateBrigade(Long id, BrigadeDto brigadeDto) {
+        return null;
+    }
+
+    public BrigadeDto getBrigadeDtoById(Long brigadeid) {
+        return brigadeMapper.brigadeToDto(getBrigadeById(brigadeid));
+    }
 }

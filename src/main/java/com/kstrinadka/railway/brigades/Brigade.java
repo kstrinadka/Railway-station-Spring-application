@@ -20,7 +20,7 @@ import lombok.Setter;
 public class Brigade {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "brigadeid", nullable = false)
     private Long brigadeid;
 

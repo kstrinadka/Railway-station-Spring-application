@@ -45,4 +45,23 @@ public class BrigadesController {
         return brigadesService.getCountWorkersInBrigade(id);
     }
 
+
+    // Создать новую бригаду
+    @PostMapping("/create")
+    public BrigadeDto createBrigade(@RequestBody BrigadeDto brigadeDto) {
+        return brigadesService.createBrigade(brigadeDto);
+    }
+
+    // Обновить работника по id
+    @PutMapping("/update/{id}")
+    public BrigadeDto updateBrigade(@PathVariable Long id, @RequestBody BrigadeDto brigadeDto) {
+        return brigadesService.updateBrigade(id, brigadeDto);
+    }
+
+    // Удалить бригаду по уникальному имени
+    @DeleteMapping("/delete")
+    public void deleteBrigade(@RequestParam  String name) {
+        brigadesService.deleteBrigade(name);
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.kstrinadka.railway.brigades;
 
+import com.kstrinadka.railway.workers.dto.DepartmentDto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,5 +15,5 @@ public class BrigadeDto {
 
     private String name;
 
-    private Long departmentid;
+    private DepartmentDto department;
 }
