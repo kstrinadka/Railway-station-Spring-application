@@ -1,8 +1,10 @@
 package com.kstrinadka.railway.tickets;
 
 
-import com.kstrinadka.railway.stationsAndRoutes.dto.RouteDto;
+import com.kstrinadka.railway.tickets.dto.TicketDto;
+import com.kstrinadka.railway.tickets.dto.TicketFrontDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
@@ -32,6 +34,15 @@ public class TicketController {
     @PostMapping("/create")
     public TicketDto createTicket(@RequestBody TicketDto dto) {
         return ticketService.saveTicket(dto);
+    }
+
+    /**
+     * @param dto - сокращенный JSON с фронта
+     * @return
+     */
+    @PostMapping("/createfront")
+    public ResponseEntity<TicketDto> createTicketFront(@RequestBody TicketFrontDto dto) {
+        return ticketService.createTicketFront(dto);
     }
 
 

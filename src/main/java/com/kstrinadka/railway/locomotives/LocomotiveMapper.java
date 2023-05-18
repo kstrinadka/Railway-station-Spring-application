@@ -1,7 +1,8 @@
 package com.kstrinadka.railway.locomotives;
 
+import com.kstrinadka.railway.locomotives.dto.LocomotiveDto;
 import com.kstrinadka.railway.locomotives.model.Locomotive;
-import com.kstrinadka.railway.stationsAndRoutes.mappers.StationMapper;
+import com.kstrinadka.railway.stations.StationMapper;
 import com.kstrinadka.railway.brigades.BrigadeMapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

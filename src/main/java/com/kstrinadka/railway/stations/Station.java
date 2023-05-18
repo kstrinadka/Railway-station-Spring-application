@@ -1,4 +1,4 @@
-package com.kstrinadka.railway.stationsAndRoutes.model;
+package com.kstrinadka.railway.stations;
 
 
 import jakarta.persistence.*;

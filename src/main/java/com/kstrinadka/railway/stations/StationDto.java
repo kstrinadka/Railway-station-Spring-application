@@ -1,4 +1,4 @@
-package com.kstrinadka.railway.stationsAndRoutes.dto;
+package com.kstrinadka.railway.stations;
 
 
 
@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * A DTO for the {@link com.kstrinadka.railway.stationsAndRoutes.model.Station} entity
+ * A DTO for the {@link Station} entity
  */
 @Data
 @NoArgsConstructor

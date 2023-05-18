@@ -1,6 +1,7 @@
 package com.kstrinadka.railway.flights;
 
 
+import com.kstrinadka.railway.flights.dto.FlightDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;

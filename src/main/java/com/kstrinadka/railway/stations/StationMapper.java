@@ -1,9 +1,7 @@
-package com.kstrinadka.railway.stationsAndRoutes.mappers;
+package com.kstrinadka.railway.stations;
 
 
 
-import com.kstrinadka.railway.stationsAndRoutes.dto.StationDto;
-import com.kstrinadka.railway.stationsAndRoutes.model.Station;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 

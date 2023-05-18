@@ -1,9 +1,7 @@
 package com.kstrinadka.railway.stationsAndRoutes;
 
 
-import com.kstrinadka.railway.locomotives.LocomotiveDto;
 import com.kstrinadka.railway.stationsAndRoutes.dto.RouteDto;
-import com.kstrinadka.railway.workers.dto.WorkerDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

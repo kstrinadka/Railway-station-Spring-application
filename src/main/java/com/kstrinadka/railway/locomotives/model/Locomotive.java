@@ -2,7 +2,7 @@ package com.kstrinadka.railway.locomotives.model;
 
 
 import com.kstrinadka.railway.brigades.Brigade;
-import com.kstrinadka.railway.stationsAndRoutes.model.Station;
+import com.kstrinadka.railway.stations.Station;
 import jakarta.persistence.*;
 import lombok.*;
 

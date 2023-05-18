@@ -1,5 +1,6 @@
-package com.kstrinadka.railway.flights;
+package com.kstrinadka.railway.flights.dto;
 
+import com.kstrinadka.railway.flights.Flight;
 import com.kstrinadka.railway.stationsAndRoutes.dto.RouteDto;
 import com.kstrinadka.railway.trains.dto.TrainDto;
 import lombok.Data;

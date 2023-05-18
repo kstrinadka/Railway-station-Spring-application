@@ -23,7 +23,6 @@ public class PassengerService {
         return passengerMapper.passengersToDtos(passengerRepository.findAll());
     }
 
-
     public List<PassengerDto> getAllPassengersByFlight(Long id) {
         return passengerMapper.passengersToDtos(passengerRepository.getAllPassengersByFlight(id));
     }
@@ -63,5 +62,15 @@ public class PassengerService {
     public PassengerDto savePassenger(PassengerDto dto) {
         Passenger passenger = passengerMapper.dtoToPassenger(dto);
         return passengerMapper.passengerToDto(passengerRepository.save(passenger));
+    }
+
+    public Passenger getPassengerById(Long id) {
+        Passenger passenger = passengerRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Passenger not found"));
+        return passenger;
+    }
+
+    public PassengerDto getPassengerDtoById(Long id) {
+        return passengerMapper.passengerToDto(getPassengerById(id));
     }
 }

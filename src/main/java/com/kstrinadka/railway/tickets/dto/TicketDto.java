@@ -1,7 +1,8 @@
-package com.kstrinadka.railway.tickets;
+package com.kstrinadka.railway.tickets.dto;
 
-import com.kstrinadka.railway.flights.FlightDto;
+import com.kstrinadka.railway.flights.dto.FlightDto;
 import com.kstrinadka.railway.passengers.PassengerDto;
+import com.kstrinadka.railway.tickets.Ticket;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

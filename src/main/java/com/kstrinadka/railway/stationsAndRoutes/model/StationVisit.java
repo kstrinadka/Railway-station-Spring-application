@@ -1,12 +1,12 @@
 package com.kstrinadka.railway.stationsAndRoutes.model;
 
 import com.kstrinadka.railway.locomotives.model.Locomotive;
+import com.kstrinadka.railway.stations.Station;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.relational.core.mapping.Column;
 
 import java.io.Serializable;
 import java.sql.Date;
@@ -45,7 +45,7 @@ class StationVisitPk implements Serializable{
     @JoinColumn(name = "stationid", referencedColumnName = "stationid", nullable = false)
     private Station station;
 
-    private Date startvisit;;
+    private Date startvisit;
 
 
     @Override

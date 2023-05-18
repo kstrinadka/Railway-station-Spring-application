@@ -1,6 +1,7 @@
 package com.kstrinadka.railway.tickets;
 
 
+import com.kstrinadka.railway.tickets.dto.TicketDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;

@@ -172,4 +172,8 @@ public class WorkerService {
 
         return ResponseEntity.ok(savedWorkerDto);
     }
+
+    public ResponseEntity<WorkerDto> createAdminFront(WorkerFrontDto dto) {
+        return null;
+    }
 }

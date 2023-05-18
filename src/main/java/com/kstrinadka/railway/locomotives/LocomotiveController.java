@@ -1,8 +1,9 @@
 package com.kstrinadka.railway.locomotives;
 
-
-import com.kstrinadka.railway.workers.dto.WorkerDto;
+import com.kstrinadka.railway.locomotives.dto.LocomotiveDto;
+import com.kstrinadka.railway.locomotives.dto.LocomotiveFrontDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
@@ -49,6 +50,15 @@ public class LocomotiveController {
     @PostMapping("/create")
     public LocomotiveDto createLocomotive(@RequestBody LocomotiveDto locomotiveDto) {
         return locomotiveService.saveLocomotive(locomotiveDto);
+    }
+
+    /**
+     * @param dto - сокращенный JSON с фронта
+     * @return
+     */
+    @PostMapping("/createfront")
+    public ResponseEntity<LocomotiveDto> createLocomotiveFront(@RequestBody LocomotiveFrontDto dto) {
+        return locomotiveService.createLocomotiveFront(dto);
     }
 
     /**

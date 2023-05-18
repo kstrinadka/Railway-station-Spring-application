@@ -3,7 +3,7 @@ package com.kstrinadka.railway.stationsAndRoutes;
 
 import com.kstrinadka.railway.stationsAndRoutes.dto.RouteDto;
 import com.kstrinadka.railway.stationsAndRoutes.mappers.RouteMapper;
-import com.kstrinadka.railway.workers.model.Worker;
+import com.kstrinadka.railway.stationsAndRoutes.model.Route;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -40,5 +40,15 @@ public class RouteService {
 
     public RouteDto saveRoute(RouteDto routeDto) {
         return routeMapper.routeToDto(routeRepository.save(routeMapper.dtoToRoute(routeDto)));
+    }
+
+    public Route getRouteById(Long id) {
+        Route route = routeRepository
+                .findById(id).orElseThrow(() -> new RuntimeException("Locomotive not found"));
+        return route;
+    }
+
+    public RouteDto getRouteDtoById(Long id) {
+        return routeMapper.routeToDto(getRouteById(id));
     }
 }

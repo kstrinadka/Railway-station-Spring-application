@@ -1,12 +1,9 @@
 package com.kstrinadka.railway.workers;
 
 
-import com.kstrinadka.railway.trains.dto.TrainDto;
-import com.kstrinadka.railway.trains.dto.TrainFrontDto;
 import com.kstrinadka.railway.workers.dto.AdministratorDto;
 import com.kstrinadka.railway.workers.dto.WorkerDto;
 import com.kstrinadka.railway.workers.dto.WorkerFrontDto;
-import com.kstrinadka.railway.workers.model.Worker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -61,6 +58,15 @@ public class WorkerController {
     @PostMapping("/createfront")
     public ResponseEntity<WorkerDto> createWorkerFront(@RequestBody WorkerFrontDto dto) {
         return workerService.createWorkerFront(dto);
+    }
+
+    /**
+     * @param dto - сокращенный JSON с фронта
+     * @return
+     */
+    @PostMapping("/admin/createfront")
+    public ResponseEntity<WorkerDto> createAdminFront(@RequestBody WorkerFrontDto dto) {
+        return workerService.createAdminFront(dto);
     }
 
     // Обновить работника по id

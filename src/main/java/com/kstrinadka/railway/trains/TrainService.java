@@ -1,7 +1,7 @@
 package com.kstrinadka.railway.trains;
 
 
-import com.kstrinadka.railway.locomotives.LocomotiveDto;
+import com.kstrinadka.railway.locomotives.dto.LocomotiveDto;
 import com.kstrinadka.railway.locomotives.LocomotiveService;
 import com.kstrinadka.railway.trains.dto.TrainDto;
 import com.kstrinadka.railway.trains.dto.TrainFrontDto;
@@ -13,9 +13,6 @@ import java.util.List;
 
 @Service
 public class TrainService {
-
-
-
 
     private TrainRepository trainRepository;
     private TrainMapper trainMapper;
@@ -74,5 +71,15 @@ public class TrainService {
         Train train = trainRepository.save(trainMapper.dtoToTrain(trainDto));
         TrainDto savedTrainDto = trainMapper.trainToDto(train);
         return ResponseEntity.ok(savedTrainDto);
+    }
+
+    public Train getTrainById(Long id) {
+        Train train = trainRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Train not found"));
+        return train;
+    }
+
+    public TrainDto getTrainDtoById(Long id) {
+        return trainMapper.trainToDto(getTrainById(id));
     }
 }

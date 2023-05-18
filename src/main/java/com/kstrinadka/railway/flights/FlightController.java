@@ -1,6 +1,8 @@
 package com.kstrinadka.railway.flights;
 
-import com.kstrinadka.railway.locomotives.LocomotiveDto;
+import com.kstrinadka.railway.flights.dto.FlightDto;
+import com.kstrinadka.railway.flights.dto.FlightFrontDto;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +21,15 @@ public class FlightController {
     @PostMapping("/create")
     public FlightDto createLocomotive(@RequestBody FlightDto dto) {
         return flightService.saveFlight(dto);
+    }
+
+    /**
+     * @param dto - сокращенный JSON с фронта
+     * @return
+     */
+    @PostMapping("/createfront")
+    public ResponseEntity<FlightDto> createFlightFront(@RequestBody FlightFrontDto dto) {
+        return flightService.createFlightFront(dto);
     }
 
     /**

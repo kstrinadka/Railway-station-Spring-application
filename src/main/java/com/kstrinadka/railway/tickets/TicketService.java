@@ -1,7 +1,15 @@
 package com.kstrinadka.railway.tickets;
 
 
+import com.kstrinadka.railway.flights.FlightService;
+import com.kstrinadka.railway.flights.dto.FlightDto;
+import com.kstrinadka.railway.passengers.PassengerDto;
+import com.kstrinadka.railway.passengers.PassengerService;
+import com.kstrinadka.railway.tickets.dto.TicketDto;
+import com.kstrinadka.railway.tickets.dto.TicketFrontDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -13,12 +21,18 @@ public class TicketService {
 
     private final TicketRepository ticketRepository;
     private final TicketMapper ticketMapper;
+    private final PassengerService passengerService;
+    private final FlightService flightService;
 
     @Autowired
     public TicketService(TicketRepository ticketRepository,
-                         TicketMapper ticketMapper) {
+                         TicketMapper ticketMapper,
+                         PassengerService passengerService,
+                         FlightService flightService) {
         this.ticketRepository = ticketRepository;
         this.ticketMapper = ticketMapper;
+        this.passengerService = passengerService;
+        this.flightService = flightService;
     }
 
 
@@ -89,5 +103,34 @@ public class TicketService {
 
     public TicketDto saveTicket(TicketDto dto) {
         return ticketMapper.ticketToDto(ticketRepository.save(ticketMapper.dtoToTicket(dto)));
+    }
+
+    public ResponseEntity<TicketDto> createTicketFront(TicketFrontDto frontDto) {
+        try {
+            return getTicketDtoResponseEntity(frontDto);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    private ResponseEntity<TicketDto> getTicketDtoResponseEntity(TicketFrontDto frontDto) {
+        TicketDto ticketDto = new TicketDto();
+        ticketDto.setCost(frontDto.getCost());
+        ticketDto.setTimepurchase(frontDto.getTimepurchase());
+        ticketDto.setPacking(frontDto.getPacking());
+        ticketDto.setReturnticket(frontDto.getReturnticket());
+        ticketDto.setReturndate(frontDto.getReturndate());
+
+        PassengerDto passengerDto = passengerService.getPassengerDtoById(frontDto.getPassengerpassport());
+        ticketDto.setPassenger(passengerDto);
+
+        FlightDto flightDto = flightService.getFlightDtoById(frontDto.getFlightnumber());
+        ticketDto.setFlight(flightDto);
+
+        Ticket ticket = ticketRepository.save(ticketMapper.dtoToTicket(ticketDto));
+        TicketDto savedTicketDto = ticketMapper.ticketToDto(ticket);
+        return ResponseEntity.ok(savedTicketDto);
     }
 }

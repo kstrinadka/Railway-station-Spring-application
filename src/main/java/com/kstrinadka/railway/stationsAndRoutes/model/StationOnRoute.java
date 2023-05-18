@@ -1,6 +1,7 @@
 package com.kstrinadka.railway.stationsAndRoutes.model;
 
 
+import com.kstrinadka.railway.stations.Station;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

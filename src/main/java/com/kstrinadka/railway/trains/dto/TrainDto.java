@@ -1,7 +1,7 @@
 package com.kstrinadka.railway.trains.dto;
 
 
-import com.kstrinadka.railway.locomotives.LocomotiveDto;
+import com.kstrinadka.railway.locomotives.dto.LocomotiveDto;
 import com.kstrinadka.railway.trains.Train;
 import lombok.Data;
 import lombok.NoArgsConstructor;

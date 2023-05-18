@@ -1,6 +1,5 @@
 package com.kstrinadka.railway.passengers;
 
-import com.kstrinadka.railway.locomotives.LocomotiveDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

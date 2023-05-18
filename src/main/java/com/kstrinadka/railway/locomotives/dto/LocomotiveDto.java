@@ -1,9 +1,8 @@
-package com.kstrinadka.railway.locomotives;
+package com.kstrinadka.railway.locomotives.dto;
 
 
 import com.kstrinadka.railway.brigades.BrigadeDto;
-import com.kstrinadka.railway.stationsAndRoutes.dto.StationDto;
-import com.kstrinadka.railway.stationsAndRoutes.model.Station;
+import com.kstrinadka.railway.stations.StationDto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
